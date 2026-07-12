@@ -9,23 +9,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MovieService {
 
-    private final MovieRepository repository;
+    private final MovieRepository movieRepository;
     private final CategoryService categoryService;
     private final StreamingService streamingService;
 
 
     public Movie save(Movie movie) {
-        this.findCategories(movie.getCategories());
-        return repository.save(movie);
+        movie.setCategories(this.findCategories(movie.getCategories()));
+        movie.setStreaming(this.findStreamings(movie.getStreaming()));
+        return movieRepository.save(movie);
     }
 
     public List<Movie> findAll() {
-        return repository.findAll();
+        return movieRepository.findAll();
+    }
+
+    public Optional<Movie> findById(Long id) {
+        return movieRepository.findById(id);
     }
 
     private List<Category> findCategories(List<Category> categories) {

@@ -1,6 +1,6 @@
 CREATE TABLE movie (
         id serial PRIMARY KEY,
-        name varchar(255) not null,
+        title varchar(255) not null,
         description text,
         release_date date,
         rating numeric,

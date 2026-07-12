@@ -8,10 +8,11 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
-      show-sql: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
 
-    flyway:
-      enabled: true
-
+  flyway:
+    enabled: true
+    repair-on-migrate: true
+    out-of-order: true
